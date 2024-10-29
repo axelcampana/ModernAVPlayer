@@ -28,7 +28,7 @@ import Foundation
 import MediaPlayer
 
 //sourcery: AutoMockable
-protocol NowPlaying {
+public protocol NowPlaying {
     func update(metadata: PlayerMediaMetadata?)
     func update(metadata: PlayerMediaMetadata?, duration: Double?, isLive: Bool)
     func overrideInfoCenter(for key: String, value: Any)

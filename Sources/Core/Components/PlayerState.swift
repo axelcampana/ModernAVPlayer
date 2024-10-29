@@ -27,7 +27,7 @@
 import Foundation
 
 //sourcery: AutoMockable
-protocol PlayerState: PlayerCommand {
+public protocol PlayerState: PlayerCommand {
     var context: PlayerContext { get }
     var type: ModernAVPlayer.State { get }
     

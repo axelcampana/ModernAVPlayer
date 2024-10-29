@@ -54,7 +54,7 @@ public protocol PlayerContext: MediaPlayer {
     func changeState(state: PlayerState)
 }
 
-final class ModernAVPlayerContext: NSObject, PlayerContext {
+public final class ModernAVPlayerContext: NSObject, PlayerContext {
     
     // MARK: - Inputs
     

@@ -28,7 +28,7 @@ import AVFoundation
 import UIKit
 
 //sourcery: AutoMockable
-protocol PlayerContextDelegate: class {
+public protocol PlayerContextDelegate: class {
     func playerContext(didStateChange state: ModernAVPlayer.State)
     func playerContext(didCurrentMediaChange media: PlayerMedia?)
     func playerContext(didCurrentTimeChange currentTime: Double)
@@ -38,7 +38,7 @@ protocol PlayerContextDelegate: class {
 }
 
 //sourcery: AutoMockable
-protocol PlayerContext: MediaPlayer {
+public protocol PlayerContext: MediaPlayer {
     var audioSession: AudioSessionService { get }
     var bgToken: UIBackgroundTaskIdentifier? { get set }
     var config: PlayerConfiguration { get }
@@ -54,7 +54,7 @@ protocol PlayerContext: MediaPlayer {
     func changeState(state: PlayerState)
 }
 
-public class ModernAVPlayerContext: NSObject, PlayerContext {
+final class ModernAVPlayerContext: NSObject, PlayerContext {
     
     // MARK: - Inputs
     

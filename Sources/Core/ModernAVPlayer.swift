@@ -174,27 +174,27 @@ public extension ModernAVPlayer {
 }
 
 extension ModernAVPlayer: PlayerContextDelegate {
-    func playerContext(didStateChange state: ModernAVPlayer.State) {
+    public func playerContext(didStateChange state: ModernAVPlayer.State) {
         delegate?.modernAVPlayer(self, didStateChange: state)
     }
     
-    func playerContext(didCurrentMediaChange media: PlayerMedia?) {
+  public func playerContext(didCurrentMediaChange media: PlayerMedia?) {
         delegate?.modernAVPlayer(self, didCurrentMediaChange: media)
     }
     
-    func playerContext(didCurrentTimeChange currentTime: Double) {
+  public func playerContext(didCurrentTimeChange currentTime: Double) {
         delegate?.modernAVPlayer(self, didCurrentTimeChange: currentTime)
     }
     
-    func playerContext(didItemDurationChange itemDuration: Double?) {
+  public func playerContext(didItemDurationChange itemDuration: Double?) {
         delegate?.modernAVPlayer(self, didItemDurationChange: itemDuration)
     }
 
-    func playerContext(unavailableActionReason: PlayerUnavailableActionReason) {
+  public func playerContext(unavailableActionReason: PlayerUnavailableActionReason) {
         delegate?.modernAVPlayer(self, unavailableActionReason: unavailableActionReason)
     }
     
-    func playerContext(didItemPlayToEndTime endTime: Double) {
+  public func playerContext(didItemPlayToEndTime endTime: Double) {
         delegate?.modernAVPlayer(self, didItemPlayToEndTime: endTime)
     }
 }

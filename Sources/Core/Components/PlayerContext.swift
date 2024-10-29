@@ -58,39 +58,39 @@ public final class ModernAVPlayerContext: NSObject, PlayerContext {
     
     // MARK: - Inputs
     
-    let audioSession: AudioSessionService
-    let config: PlayerConfiguration
-    let nowPlaying: NowPlaying
-    let player: AVPlayer
-    let plugins: [PlayerPlugin]
-    var loopMode = false
-    var failedUsedAVPlayerItem = Set<AVPlayerItem>()
+  public let audioSession: AudioSessionService
+  public let config: PlayerConfiguration
+  public let nowPlaying: NowPlaying
+  public let player: AVPlayer
+  public let plugins: [PlayerPlugin]
+  public var loopMode = false
+  public var failedUsedAVPlayerItem = Set<AVPlayerItem>()
 
-    weak var delegate: PlayerContextDelegate?
+  public weak var delegate: PlayerContextDelegate?
     
     // MARK: - Variables
     
-    var bgToken: UIBackgroundTaskIdentifier?
-    var currentItem: AVPlayerItem? {
+  public var bgToken: UIBackgroundTaskIdentifier?
+  public var currentItem: AVPlayerItem? {
         player.currentItem
     }
-    var currentMedia: PlayerMedia? {
+  public var currentMedia: PlayerMedia? {
         didSet { delegate?.playerContext(didCurrentMediaChange: currentMedia) }
     }
-    var currentTime: Double {
+  public var currentTime: Double {
         player.currentTime().seconds
     }
-    var itemDuration: Double? {
+  public var itemDuration: Double? {
         currentItem?.duration.seconds
     }
-    var remoteCommands: [ModernAVPlayerRemoteCommand]? {
+  public var remoteCommands: [ModernAVPlayerRemoteCommand]? {
         didSet {
             let msg = "Set \(remoteCommands?.count ?? 0) remote command(s)"
             ModernAVPlayerLogger.instance.log(message: msg, domain: .remoteCommand)
         }
     }
 
-    var state: PlayerState! {
+  public var state: PlayerState! {
         didSet {
             ModernAVPlayerLogger.instance.log(message: state.type.description, domain: .state)
             state.contextUpdated()
@@ -138,15 +138,15 @@ public final class ModernAVPlayerContext: NSObject, PlayerContext {
 
     // MARK: - Public functions
 
-    func changeState(state: PlayerState) {
+  public func changeState(state: PlayerState) {
         self.state = state
     }
 
-    func pause() {
+  public func pause() {
         state.pause()
     }
 
-    func seek(position: Double) {
+  public func seek(position: Double) {
         guard let item = currentItem
             else { unaivalableCommand(reason: .loadMediaFirst); return }
 
@@ -161,27 +161,27 @@ public final class ModernAVPlayerContext: NSObject, PlayerContext {
         }
     }
 
-    func seek(offset: Double) {
+  public func seek(offset: Double) {
         let position = currentTime + offset
         seek(position: position)
     }
 
-    func stop() {
+  public func stop() {
         state.stop()
     }
 
-    func load(media: PlayerMedia, autostart: Bool, position: Double?) {
+  public func load(media: PlayerMedia, autostart: Bool, position: Double?) {
         let previousMedia = currentMedia
         currentMedia = media
         plugins.forEach { $0.didMediaChanged(media, previousMedia: previousMedia) }
         state.load(media: media, autostart: autostart, position: position)
     }
     
-    func play() {
+  public func play() {
         state.play()
     }
     
-    func updateMetadata(_ metadata: PlayerMediaMetadata?) {
+  public func updateMetadata(_ metadata: PlayerMediaMetadata?) {
         guard let media = currentMedia
             else { unaivalableCommand(reason: .loadMediaFirst); return }
         

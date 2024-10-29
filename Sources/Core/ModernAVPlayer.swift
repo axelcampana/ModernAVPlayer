@@ -66,7 +66,7 @@ public final class ModernAVPlayer: NSObject, ModernAVPlayerExposable {
 
     // MARK: - Input
     
-    private let context: ModernAVPlayerContext
+    let context: ModernAVPlayerContext
     
     // MARK: - Init
     
